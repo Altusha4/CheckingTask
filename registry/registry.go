@@ -49,3 +49,19 @@ func (r *Registry) EnrollCourse(id uint64, course string) error {
 	r.Students[id] = s
 	return nil
 }
+
+func (r *Registry) RemoveCourse(id uint64, course string) error {
+	s := r.Students[id]
+	if s.ID == 0 {
+		return fmt.Errorf("Student not found")
+	}
+
+	for i, c := range s.Courses {
+		if c == course {
+			s.Courses = append(s.Courses[:i], s.Courses[i+1:]...)
+			r.Students[id] = s
+			return nil
+		}
+	}
+	return fmt.Errorf("Course not found")
+}
