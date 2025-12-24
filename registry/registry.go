@@ -19,7 +19,7 @@ func NewRegistry() *Registry {
 }
 
 func (r *Registry) AddStudent(student Student) error {
-	if student.Name != "" {
+	if student.Name == "" {
 		return fmt.Errorf("name cannot be empty")
 	}
 	if r.Students[student.ID].ID != 0 {
