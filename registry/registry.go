@@ -9,3 +9,9 @@ type Student struct {
 type Registry struct {
 	Students map[uint64]Student
 }
+
+func NewRegistry() *Registry {
+	return &Registry{
+		Students: make(map[uint64]Student),
+	}
+}
