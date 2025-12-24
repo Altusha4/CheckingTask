@@ -15,3 +15,9 @@ func NewRegistry() *Registry {
 		Students: make(map[uint64]Student),
 	}
 }
+
+func (r *Registry) AddStudent(student Student) {
+	if student.Name != "" {
+		r.Students[student.ID] = student
+	}
+}
