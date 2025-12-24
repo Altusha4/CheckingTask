@@ -1,5 +1,7 @@
 package registry
 
+import "fmt"
+
 type Student struct {
 	ID      uint64
 	Name    string
@@ -16,8 +18,13 @@ func NewRegistry() *Registry {
 	}
 }
 
-func (r *Registry) AddStudent(student Student) {
+func (r *Registry) AddStudent(student Student) error {
 	if student.Name != "" {
-		r.Students[student.ID] = student
+		return fmt.Errorf("name cannot be empty")
 	}
+	if r.Students[student.ID].ID != 0 {
+		return fmt.Errorf("id exists")
+	}
+	r.Students[student.ID] = student
+	return nil
 }
