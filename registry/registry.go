@@ -65,3 +65,11 @@ func (r *Registry) RemoveCourse(id uint64, course string) error {
 	}
 	return fmt.Errorf("Course not found")
 }
+
+func (r *Registry) ListStudents() []Student {
+	result := []Student{}
+	for _, s := range r.Students {
+		result = append(result, s)
+	}
+	return result
+}
