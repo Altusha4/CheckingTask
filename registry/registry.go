@@ -73,3 +73,14 @@ func (r *Registry) ListStudents() []Student {
 	}
 	return result
 }
+
+func (r *Registry) CoursesCount() map[string]int {
+	m := make(map[string]int)
+
+	for _, s := range r.Students {
+		for _, c := range s.Courses {
+			m[c]++
+		}
+	}
+	return m
+}
